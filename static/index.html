@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AIvora - Educational AI</title>
+  <link rel="stylesheet" href="/styles.css" />
+</head>
+<body>
+  <main class="app">
+    <header>
+      <h1>AIvora</h1>
+      <p>Educational AI assistant for learning, quizzing, and flashcards.</p>
+    </header>
+
+    <section class="panel controls">
+      <label>Topic / Question</label>
+      <input id="topicInput" type="text" placeholder="Ask a question or enter a topic" />
+
+      <label>Teach Content</label>
+      <textarea id="teachInput" rows="4" placeholder="Teach AIvora with a concise explanation"></textarea>
+
+      <label>Tags (comma separated)</label>
+      <input id="tagsInput" type="text" placeholder="science, algebra, revision" />
+
+      <div class="actions">
+        <button id="askBtn">Ask</button>
+        <button id="teachBtn">Teach</button>
+        <button id="quizBtn">Quiz</button>
+        <button id="flashBtn">Flashcards</button>
+      </div>
+
+      <div class="upload-row">
+        <input id="uploadInput" type="file" accept="image/*" />
+        <button id="uploadBtn">Upload Homework</button>
+      </div>
+    </section>
+
+    <section class="panel output">
+      <h2>AIvora Output</h2>
+      <div id="outputArea" class="messages"></div>
+    </section>
+  </main>
+
+  <script src="/app.js"></script>
+</body>
+</html>

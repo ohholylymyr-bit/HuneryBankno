@@ -1,0 +1,76 @@
+:root {
+  color-scheme: light dark;
+  --bg: #0f172a;
+  --panel: #1e293b;
+  --accent: #22d3ee;
+  --text: #e2e8f0;
+}
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: linear-gradient(180deg, #0f172a, #1d4ed8);
+  color: var(--text);
+}
+.app {
+  max-width: 950px;
+  margin: 0 auto;
+  padding: 1rem;
+}
+header h1 {
+  margin-bottom: 0.3rem;
+}
+.panel {
+  background: rgba(15, 23, 42, 0.85);
+  border: 1px solid #334155;
+  border-radius: 12px;
+  padding: 1rem;
+  margin-bottom: 1rem;
+}
+.controls label {
+  display: block;
+  margin: 0.6rem 0 0.2rem;
+  font-size: 0.95rem;
+}
+input, textarea, button {
+  width: 100%;
+  box-sizing: border-box;
+  border-radius: 8px;
+  border: 1px solid #475569;
+  background: #0f172a;
+  color: var(--text);
+  padding: 0.6rem;
+}
+.actions {
+  margin-top: 0.8rem;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0.5rem;
+}
+button {
+  cursor: pointer;
+  background: #0369a1;
+  border: none;
+}
+button:hover { background: #0284c7; }
+.upload-row {
+  margin-top: 0.8rem;
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 0.5rem;
+}
+.messages {
+  display: flex;
+  flex-direction: column;
+  gap: 0.7rem;
+}
+.msg {
+  padding: 0.7rem;
+  border-radius: 8px;
+  background: #1e293b;
+  border-left: 3px solid var(--accent);
+  white-space: pre-wrap;
+}
+@media (max-width: 700px) {
+  .actions { grid-template-columns: 1fr 1fr; }
+  .upload-row { grid-template-columns: 1fr; }
+}
