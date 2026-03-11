@@ -1,0 +1,59 @@
+:root {
+  color-scheme: light dark;
+  font-family: Arial, sans-serif;
+}
+body {
+  margin: 0;
+  background: #f4f7fb;
+  color: #1b1f23;
+}
+.app {
+  max-width: 900px;
+  margin: 2rem auto;
+  padding: 0 1rem;
+}
+.subtitle { margin-top: -0.5rem; color: #4f5d75; }
+.panel {
+  background: white;
+  border-radius: 12px;
+  padding: 1rem;
+  margin-bottom: 1rem;
+  box-shadow: 0 5px 20px rgba(0,0,0,.08);
+}
+input, textarea, button {
+  width: 100%;
+  margin: .4rem 0;
+  padding: .7rem;
+  border: 1px solid #ccd5e0;
+  border-radius: 8px;
+  box-sizing: border-box;
+}
+.actions {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: .5rem;
+}
+.upload-row {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: .5rem;
+  margin-top: .5rem;
+}
+button {
+  background: #1f6feb;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+button:hover { opacity: .9; }
+pre {
+  white-space: pre-wrap;
+  min-height: 180px;
+  background: #f8fafc;
+  border: 1px dashed #ccd5e0;
+  padding: 1rem;
+}
+@media (max-width: 720px) {
+  .actions { grid-template-columns: 1fr 1fr; }
+  .upload-row { grid-template-columns: 1fr; }
+}

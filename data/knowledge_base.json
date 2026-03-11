@@ -1,0 +1,28 @@
+{
+  "topics": {
+    "physics": {
+      "summary": "Physics studies matter, energy, motion, and forces in the universe.",
+      "details": "Key branches include mechanics, electromagnetism, thermodynamics, optics, and modern physics. Newton's laws describe motion, while conservation laws describe how quantities like energy remain constant in closed systems.",
+      "source": "system-seed",
+      "updated_at": 1773238906
+    },
+    "biology": {
+      "summary": "Biology is the science of living organisms and life processes.",
+      "details": "Core areas include cell biology, genetics, ecology, and evolution. Cells are the basic units of life, DNA carries hereditary information, and natural selection drives evolutionary change.",
+      "source": "system-seed",
+      "updated_at": 1773238906
+    },
+    "mathematics": {
+      "summary": "Mathematics explores numbers, structures, patterns, and logical reasoning.",
+      "details": "Main areas include arithmetic, algebra, geometry, calculus, and statistics. It provides tools for modeling real-world phenomena and solving scientific, engineering, and economic problems.",
+      "source": "system-seed",
+      "updated_at": 1773238906
+    },
+    "chemistry": {
+      "summary": "Chemistry studies substances, their properties, and reactions",
+      "details": "Chemistry studies substances, their properties, and reactions.",
+      "source": "user",
+      "updated_at": 1773238907
+    }
+  }
+}

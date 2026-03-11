@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AIvora Learning Assistant</title>
+  <link rel="stylesheet" href="/static/styles.css" />
+</head>
+<body>
+  <main class="app">
+    <h1>AIvora</h1>
+    <p class="subtitle">Educational AI Assistant</p>
+
+    <section class="panel">
+      <label>Topic</label>
+      <input id="topicInput" placeholder="e.g., photosynthesis" />
+      <label>Question / Content</label>
+      <textarea id="contentInput" rows="4" placeholder="Ask a question or teach new information..."></textarea>
+      <div class="actions">
+        <button id="askBtn">Ask</button>
+        <button id="teachBtn">Teach</button>
+        <button id="quizBtn">Quiz</button>
+        <button id="flashBtn">Flashcards</button>
+      </div>
+      <div class="upload-row">
+        <input type="file" id="fileInput" accept="image/*" />
+        <button id="uploadBtn">Upload Homework</button>
+      </div>
+    </section>
+
+    <section class="panel">
+      <h2>Output</h2>
+      <pre id="output"></pre>
+    </section>
+  </main>
+  <script src="/static/app.js"></script>
+</body>
+</html>
