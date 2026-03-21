@@ -1,0 +1,49 @@
+{
+  "mode": "paper",
+  "semiAggressive": true,
+  "basePair": "ASTERUSDT",
+  "pairs": ["ASTERUSDT", "BTCUSDT", "ETHUSDT"],
+  "timeframes": ["1m", "5m", "15m", "1h", "4h"],
+  "startingBalance": 10000,
+  "fees": 0.001,
+  "slippage": 0.0007,
+  "maxTradesPerDay": 15,
+  "maxConsecutiveLosses": 4,
+  "dailyLossLimitPct": 4,
+  "minScoreThreshold": 70,
+  "maxScoreThreshold": 85,
+  "defaultScoreThreshold": 75,
+  "baseRiskPct": 1.2,
+  "riskRangePct": [0.8, 1.8],
+  "atrMultipliers": {
+    "sl": 1.7,
+    "tp1": 1.2,
+    "tp2": 2.4,
+    "trailing": 1.1
+  },
+  "weights": {
+    "trend": 0.3,
+    "rsi": 0.15,
+    "volume": 0.2,
+    "volatility": 0.15,
+    "candle": 0.2
+  },
+  "optionalHedging": false,
+  "riskAllocation": {
+    "ASTERUSDT": 0.5,
+    "BTCUSDT": 0.3,
+    "ETHUSDT": 0.2
+  },
+  "exchange": {
+    "timeoutMs": 10000,
+    "retryCount": 3,
+    "retryDelayMs": 750,
+    "rateLimitMs": 250
+  },
+  "alerts": {
+    "desktop": true,
+    "telegram": false,
+    "discord": false,
+    "email": false
+  }
+}

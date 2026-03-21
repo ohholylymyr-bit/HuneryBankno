@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AsterBot Dashboard</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 0; background: #0f172a; color: #e2e8f0; }
+    .grid { display: grid; grid-template-columns: 2fr 1fr; gap: 12px; padding: 12px; }
+    .card { background: #1e293b; border-radius: 8px; padding: 10px; box-shadow: 0 0 0 1px #334155; }
+    .kpi { display: flex; justify-content: space-between; margin: 4px 0; }
+    button, select, input { margin: 6px 4px 6px 0; padding: 8px; border-radius: 6px; border: 1px solid #475569; background: #0b1220; color: #e2e8f0; }
+    #logs, #alerts { height: 260px; overflow-y: auto; font-size: 12px; background: #020617; padding: 8px; border-radius: 6px; }
+    .pill { padding: 2px 6px; border-radius: 999px; font-size: 12px; background: #334155; }
+  </style>
+</head>
+<body>
+  <div class="grid">
+    <div class="card">
+      <h2>AsterBot Control Panel</h2>
+      <div>
+        <button id="startBtn">Start</button>
+        <button id="stopBtn">Stop</button>
+        <select id="modeSelect"><option value="paper">Paper</option><option value="live">Live</option></select>
+        <label>Risk % <input id="riskSlider" type="range" min="0.8" max="1.8" step="0.1" value="1.2"></label>
+        <label>Score <input id="scoreSlider" type="range" min="70" max="85" step="1" value="75"></label>
+        <label>Trailing <select id="trailingSelect"><option value="true">ON</option><option value="false">OFF</option></select></label>
+        <label>Max trades/day <input id="maxTrades" type="number" min="1" max="50" value="15"></label>
+      </div>
+      <h3>Live Metrics</h3>
+      <div id="metrics"></div>
+      <h3>Indicator Snapshot</h3>
+      <div id="indicators"></div>
+    </div>
+
+    <div class="card">
+      <h3>Alerts</h3>
+      <div id="alerts"></div>
+    </div>
+
+    <div class="card" style="grid-column: span 2;">
+      <h3>Execution Logs</h3>
+      <div id="logs"></div>
+    </div>
+  </div>
+  <script src="/app.js"></script>
+</body>
+</html>
