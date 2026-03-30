@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="fi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Herkkulähetti</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header class="topbar">
+      <div>
+        <h1>Herkkulähetti</h1>
+        <p class="subtitle">Tilaa ruokaa alle 30 sekunnissa.</p>
+      </div>
+      <div class="status" id="sessionStatus">Ei kirjautunutta käyttäjää</div>
+    </header>
+
+    <main>
+      <section class="card">
+        <h2>Roolikohtainen kirjautuminen</h2>
+        <p class="muted">Valitse rooli. Kirjautuminen toimii vain kyseisen roolin tunnuksilla. Courier- ja ravintolatilit vaativat admin-hyväksynnän.</p>
+        <div class="role-buttons" id="roleButtons"></div>
+        <div id="authPanels"></div>
+      </section>
+
+      <section class="card hidden" id="customerApp">
+        <h2>Asiakassovellus</h2>
+        <div class="grid two">
+          <div>
+            <h3>Nopea tilaus</h3>
+            <label>Toimitusosoite
+              <input id="addressInput" type="text" value="Esimerkkikatu 1, Helsinki" />
+            </label>
+            <label>Haku (ravintola / annos)
+              <input id="searchInput" type="search" placeholder="Hae pizza, sushi, burger..." />
+            </label>
+            <div class="chips" id="categoryChips"></div>
+            <div class="restaurant-list" id="restaurantList"></div>
+          </div>
+
+          <div>
+            <h3>Ostoskori</h3>
+            <ul id="cartList" class="clean-list"></ul>
+            <div class="price-box">
+              <div><span>Tuotteet</span><strong id="subtotal">0,00 €</strong></div>
+              <div><span>Toimitus</span><strong id="deliveryFee">2,90 €</strong></div>
+              <div><span>Palvelumaksu</span><strong id="serviceFee">1,50 €</strong></div>
+              <div><span>Alennus</span><strong id="discount">0,00 €</strong></div>
+              <div class="total"><span>Yhteensä</span><strong id="total">0,00 €</strong></div>
+            </div>
+            <button id="placeOrderBtn" class="primary">Tee tilaus</button>
+            <p id="orderMessage" class="muted"></p>
+            <div class="timeline hidden" id="orderTimeline"></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="card hidden" id="courierApp">
+        <h2>Lähettisovellus</h2>
+        <div class="toolbar">
+          <button id="toggleOnlineBtn">Siirry online</button>
+          <span id="courierState">Tila: offline</span>
+        </div>
+        <div class="panel">
+          <h3>Aktiiviset toimitukset</h3>
+          <ul id="courierOrders" class="clean-list"></ul>
+        </div>
+      </section>
+
+      <section class="card hidden" id="merchantApp">
+        <h2>Ravintolapaneeli</h2>
+        <div class="panel">
+          <h3>Menu</h3>
+          <ul id="menuList" class="clean-list"></ul>
+        </div>
+        <form id="menuForm" class="inline-form">
+          <input required id="menuName" placeholder="Annoksen nimi" />
+          <input required id="menuPrice" type="number" min="1" step="0.1" placeholder="Hinta" />
+          <button type="submit">Lisää annos</button>
+        </form>
+      </section>
+
+      <section class="card hidden" id="adminApp">
+        <h2>Admin-paneeli</h2>
+        <div class="panel">
+          <h3>Odottaa hyväksyntää</h3>
+          <ul id="approvalQueue" class="clean-list"></ul>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <small>Herkkulähetti • Firebase-ready MVP (Auth + Firestore + role separation).</small>
+    </footer>
+
+    <script src="firebase-config.js"></script>
+    <script type="module" src="app.js"></script>
+  </body>
+</html>
