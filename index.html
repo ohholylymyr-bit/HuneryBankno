@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="fi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Hunery AI Sijoitusbotti</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main class="shell">
+      <section class="hero card">
+        <div>
+          <p class="eyebrow">Aster Pro API • Paper & Live • Oma mikro-AI</p>
+          <h1>AI-sijoitusbotti kryptotreidaukseen</h1>
+          <p class="lead">
+            Kevyt selainpohjainen botti, joka valitsee krypton esiasetetuista vaihtoehdoista,
+            pisteyttää markkinan omalla sääntö-AI:lla ja avaa tai sulkee position strategian mukaan.
+          </p>
+          <p class="risk">Ei sijoitusneuvontaa. Live-tila on suojattu vahvistuksilla ja vaatii Aster Pro API user- ja signer-walletin.</p>
+        </div>
+        <div class="status-panel">
+          <span id="botState" class="pill idle">Pysäytetty</span>
+          <strong id="portfolioValue">10 000,00 USDT</strong>
+          <small>Simuloitu salkun arvo</small>
+        </div>
+      </section>
+
+      <section class="grid">
+        <form id="botForm" class="card controls">
+          <h2>Asetukset</h2>
+          <label>
+            Treidaustila
+            <select id="mode">
+              <option value="paper">Paper trading</option>
+              <option value="live">Live Aster Pro API</option>
+            </select>
+          </label>
+          <label>
+            Kryptovaihtoehdot
+            <select id="symbol" multiple size="6">
+              <option selected>BTC/USDT</option>
+              <option selected>ETH/USDT</option>
+              <option>SOL/USDT</option>
+              <option>BNB/USDT</option>
+              <option>XRP/USDT</option>
+              <option>DOGE/USDT</option>
+            </select>
+          </label>
+          <div class="two-col">
+            <label>Risk per treidi %<input id="risk" type="number" min="0.1" max="10" step="0.1" value="1.5" /></label>
+            <label>Max positiot<input id="maxPositions" type="number" min="1" max="5" step="1" value="2" /></label>
+            <label>Stop loss %<input id="stopLoss" type="number" min="0.5" max="20" step="0.1" value="3" /></label>
+            <label>Take profit %<input id="takeProfit" type="number" min="0.5" max="50" step="0.1" value="6" /></label>
+          </div>
+          <details>
+            <summary>Aster Pro API -asetukset</summary>
+            <label>Pro Base URL<input id="apiBase" type="url" value="https://fapi3.asterdex.com" placeholder="https://fapi3.asterdex.com" /></label>
+            <label>User wallet<input id="apiUser" type="text" placeholder="0x... päätili, johon signer-agentti on liitetty" /></label>
+            <label>Signer wallet<input id="apiSigner" type="text" placeholder="0x... Pro API / agent signer" /></label>
+            <label>Signer private key <small>vain kehitystestiin, ei tallenneta</small><input id="apiPrivateKey" type="password" autocomplete="off" placeholder="0x... jos selaimessa ei ole lompakkoa" /></label>
+          </details>
+          <div class="actions">
+            <button id="startBtn" type="submit">Käynnistä botti</button>
+            <button id="stopBtn" type="button" class="secondary">Pysäytä</button>
+          </div>
+        </form>
+
+        <section class="card">
+          <h2>Oma superkevyt AI</h2>
+          <div class="ai-meter">
+            <div id="aiNeedle"></div>
+          </div>
+          <p id="aiVerdict" class="verdict">Odottaa dataa...</p>
+          <ul id="aiFactors" class="factors"></ul>
+        </section>
+      </section>
+
+      <section class="grid bottom-grid">
+        <section class="card">
+          <h2>Avoimet positiot</h2>
+          <div class="table-wrap">
+            <table>
+              <thead><tr><th>Symboli</th><th>Side</th><th>Koko</th><th>Entry</th><th>PnL</th><th></th></tr></thead>
+              <tbody id="positionsBody"><tr><td colspan="6">Ei avoimia positioita.</td></tr></tbody>
+            </table>
+          </div>
+        </section>
+        <section class="card">
+          <h2>Bottiloki</h2>
+          <ol id="log" class="log"></ol>
+        </section>
+      </section>
+    </main>
+    <script src="https://cdn.jsdelivr.net/npm/ethers@6.13.5/dist/ethers.umd.min.js"></script>
+    <script src="asterdex-plugin.js"></script>
+    <script src="app.js"></script>
+  </body>
+</html>
