@@ -19,6 +19,7 @@
       this.includeUser = options.includeUser !== false;
       this.privateKey = options.privateKey || "";
       this.signatureProvider = options.signatureProvider || null;
+      this.exchangeInfoCache = null;
     }
 
     static get defaults() {
@@ -135,6 +136,43 @@
       return this.request("/fapi/v3/time");
     }
 
+    exchangeInfo() {
+      if (!this.exchangeInfoCache) this.exchangeInfoCache = this.request("/fapi/v3/exchangeInfo");
+      return this.exchangeInfoCache;
+    }
+
+    async symbolInfo(symbol) {
+      const asterSymbol = this.toAsterSymbol(symbol);
+      const exchangeInfo = await this.exchangeInfo();
+      return exchangeInfo.symbols?.find((item) => item.symbol === asterSymbol);
+    }
+
+    async formatMarketQuantity(symbol, quantity) {
+      const info = await this.symbolInfo(symbol);
+      const filters = info?.filters || [];
+      const lotFilter = filters.find((filter) => filter.filterType === "MARKET_LOT_SIZE")
+        || filters.find((filter) => filter.filterType === "LOT_SIZE");
+      if (!lotFilter?.stepSize) return String(quantity);
+      const formatted = this.floorToStep(quantity, lotFilter.stepSize);
+      if (Number(lotFilter.minQty) && Number(formatted) < Number(lotFilter.minQty)) {
+        throw new Error(`Aster Pro API määrä on liian pieni symbolille ${this.toAsterSymbol(symbol)}. Minimi on ${lotFilter.minQty}.`);
+      }
+      return formatted;
+    }
+
+    floorToStep(value, stepSize) {
+      const decimals = this.decimalsFromStep(stepSize);
+      const factor = 10 ** decimals;
+      const floored = Math.floor(Number(value) * factor) / factor;
+      return floored.toFixed(decimals).replace(/\.?0+$/, "");
+    }
+
+    decimalsFromStep(stepSize) {
+      const normalized = String(stepSize).replace(/0+$/, "");
+      const decimalPart = normalized.split(".")[1];
+      return decimalPart ? decimalPart.length : 0;
+    }
+
     tickerPrice(symbol) {
       return this.request("/fapi/v3/ticker/price", { params: { symbol: this.toAsterSymbol(symbol) } });
     }
@@ -144,12 +182,12 @@
       return { symbol, price: Number(ticker.price), source: "asterdex" };
     }
 
-    placeMarketOrder({ symbol, side, quantity, reduceOnly = false }) {
+    async placeMarketOrder({ symbol, side, quantity, reduceOnly = false }) {
       const params = {
         symbol: this.toAsterSymbol(symbol),
         side,
         type: "MARKET",
-        quantity: String(quantity),
+        quantity: await this.formatMarketQuantity(symbol, quantity),
       };
       if (reduceOnly) params.reduceOnly = "true";
       return this.request("/fapi/v3/order", {

@@ -12,6 +12,7 @@ Selainpohjainen prototyyppi kryptobottiin, jossa on oma kevyt sääntö-AI, pape
 - `asterdex-plugin.js` sisältää uuden `AsterProApiPlugin`-clientin, joka käyttää Aster Pro / V3 Futures -base URL:ia `https://fapi3.asterdex.com` ja `/fapi/v3/*`-polkuja.
 - Pro-signed requestit lisäävät `user`, `nonce`, `signer` ja `signature` -kentät, järjestävät allekirjoitettavat parametrit vakaaseen ASCII-järjestykseen ja allekirjoittavat saman form-urlencoded-parametrimerkkijonon EIP-712 `AsterSignTransaction` -viestinä. `user` on päätilin wallet, johon signer-agentti on liitetty; ilman sitä Aster voi palauttaa `No agent found`.
 - Live-tilassa plugin allekirjoittaa ensisijaisesti selaimen `window.ethereum`-lompakolla, vaihtoehtoisesti kehitystestaukseen syötetyllä signer private keyllä `ethers.js`-kirjaston avulla tai omalla `signatureProvider`-funktiolla. Allekirjoittavan osoitteen pitää olla sama kuin `Signer wallet`, ei päätilin `User wallet`. Vanhoja V1 `API key + secret` -kenttiä ei enää käytetä.
+- Live-market orderien `quantity` pyöristetään automaattisesti Asterin `exchangeInfo`-endpointin `MARKET_LOT_SIZE`/`LOT_SIZE` `stepSize`-tarkkuuteen, jotta virhe `Precision is over the maximum defined for this asset` vältetään.
 
 ## Käynnistys
 

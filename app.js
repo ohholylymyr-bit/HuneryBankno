@@ -68,7 +68,7 @@ class AsterDexAdapter {
       const response = await this.plugin.placeMarketOrder({
         symbol: order.symbol,
         side: order.side,
-        quantity: order.size.toFixed(6),
+        quantity: order.size,
       });
       return { ...order, id: response.orderId || crypto.randomUUID(), status: response.status || "LIVE_SENT", raw: response };
     }
